@@ -42,7 +42,6 @@ describe('CatalogService', () => {
 
     it('should create catalog', async () => {
       const catalog = await service.createCatalog({
-        id: '550e8400-e29b-41d4-a716-446655440001',
         title: 'Test 1',
         description: 'This is a description 1',
         year: 2025,
