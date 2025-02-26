@@ -1,19 +1,7 @@
-# Docker
+# Docker pull catalog docker hub image and run postgres
 
-### Build image
+`docker pull samg1008/catalog-app:latest`
 
-```
-docker build -t nestjs-catalog-app .
-```
+`docker run -d -p 5432:5432 --name postgres -e POSTGRES_USER=postgres -e POSTGRES_PASSWORD=postgres -e POSTGRES_DB=catalog --network app-network postgres:17-alpine`
 
-### Run image
-
-```
-docker run -p 3000:3000 nestjs-catalog-app
-```
-
-## Docker compose
-
-```
-docker-compose up -d --build
-```
+We have to run postgres on the same network and with service name : postgres
