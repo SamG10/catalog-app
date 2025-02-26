@@ -1,6 +1,6 @@
 services:
   catalog-app:
-    image: catalog-app/catalog-app:latest
+    image: samg1008/catalog-app:latest
     container_name: catalog-app
     restart: always
     env_file:
