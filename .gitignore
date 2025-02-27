@@ -2,6 +2,9 @@
 .env
 .env.*
 
+# runner github
+action-runner
+
 # compiled output
 /dist
 /node_modules
