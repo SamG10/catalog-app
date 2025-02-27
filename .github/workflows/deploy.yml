@@ -1,0 +1,45 @@
+name: Staging & Production Deployment
+
+on:
+  workflow_run:
+    workflows: ['Build and Push Docker Image']
+    types:
+      - completed
+
+jobs:
+  build-and-test:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t samg1008/catalog-app:latest .
+
+      - name: Run tests
+        run: docker run --rm samg1008/catalog-app:latest npm run test
+
+  deploy-staging:
+    needs: build-and-test
+    runs-on: self-hosted
+    steps:
+      - name: Stop existing containers
+        run: docker compose down || true
+
+      - name: Deploy Staging
+        run: |
+          export NODE_ENV=staging
+          docker compose up -d --build
+
+  deploy-production:
+    needs: deploy-staging
+    runs-on: self-hosted
+    environment: production
+    steps:
+      - name: Stop existing containers
+        run: docker compose down || true
+
+      - name: Deploy Production
+        run: |
+          export NODE_ENV=production
+          docker compose up -d --build

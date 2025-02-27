@@ -3,8 +3,13 @@ services:
     image: samg1008/catalog-app:latest
     container_name: catalog-app
     restart: always
-    env_file:
-      - .env.production
+    environment:
+      - NODE_ENV=${NODE_ENV}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - DB_NAME=${DB_NAME}
     depends_on:
       postgres:
         condition: service_healthy
@@ -25,8 +30,6 @@ services:
       - POSTGRES_DB=${DB_NAME}
     ports:
       - ${DB_PORT}:${DB_PORT}
-    env_file:
-      - .env.production
     volumes:
       - postgres_data:/var/lib/postgresql/data
     healthcheck:
