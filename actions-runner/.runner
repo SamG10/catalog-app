@@ -1,9 +1,0 @@
-﻿{
-  "agentId": 2,
-  "agentName": "catalog-runner",
-  "poolId": 1,
-  "poolName": "Default",
-  "serverUrl": "https://pipelinesghubeus24.actions.githubusercontent.com/OL2VkLIi2MRg04HpWXNftLbwcTU5XIOZFby7cIffY91pNWt8hB/",
-  "gitHubUrl": "https://github.com/SamG10/catalog-app",
-  "workFolder": "_work"
-}
